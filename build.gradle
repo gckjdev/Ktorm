@@ -17,6 +17,7 @@ buildscript {
 
 allprojects {
     // group = "me.liuwj.ktorm"
+    // 修改 groupId 与开源版本进行区分
     group = "com.huaying.ktorm"
     version = "2.4"
 }
@@ -95,6 +96,7 @@ subprojects { project ->
                     }
                 }
             }
+            // 使用 ./gradlew publishHuayingPublicationToMavenRepository 命令发布到 Maven 私服
             huaying(MavenPublication) {
                 from components.java
                 artifact generateSourcesJar
