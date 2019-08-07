@@ -16,7 +16,8 @@ buildscript {
 }
 
 allprojects {
-    group = "me.liuwj.ktorm"
+    // group = "me.liuwj.ktorm"
+    group = "com.huaying.ktorm"
     version = "2.4"
 }
 
@@ -92,6 +93,23 @@ subprojects { project ->
                     scm {
                         url = "https://github.com/vincentlauvlwj/Ktorm.git"
                     }
+                }
+            }
+            huaying(MavenPublication) {
+                from components.java
+                artifact generateSourcesJar
+
+                groupId project.group
+                artifactId project.name
+                version project.version
+            }
+        }
+        repositories {
+            maven {
+                url = "http://61.143.225.69:28888/nexus/content/repositories/releases"
+                credentials {
+                    username System.getenv("MAVEN_DEPLOYMENT_USER")
+                    password System.getenv("MAVEN_DEPLOYMENT_PASSWORD")
                 }
             }
         }
